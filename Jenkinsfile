@@ -2,22 +2,25 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout Code') {
+        stage('Setup Python Environment') {
             steps {
-                git 'https://github.com/YOUR_USERNAME/python-jenkins-job.git'
-            }
-        }
-
-        stage('Setup Python') {
-            steps {
-                sh 'python3 -m venv venv'
-                sh '. venv/bin/activate && pip install -r requirements.txt'
+                echo 'Creating virtual environment and installing dependencies...'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run Python Script') {
             steps {
-                sh '. venv/bin/activate && python main.py'
+                echo 'Running main.py...'
+                sh '''
+                    . venv/bin/activate
+                    python main.py
+                '''
             }
         }
     }
