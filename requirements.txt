@@ -1,0 +1,5 @@
+cd /your/local/repo
+touch requirements.txt  # or add packages as needed
+git add requirements.txt
+git commit -m "Add requirements.txt"
+git push origin main
