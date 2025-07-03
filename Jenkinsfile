@@ -20,9 +20,6 @@ pipeline {
                     . venv/bin/activate
                     python main.py
                 '''
-                {
-                    echo 'hi'
-                }
             }
         }
     }
